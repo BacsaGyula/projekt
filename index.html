@@ -3,9 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>War Thunder Event-ek</title>
+
+    <title>War Thunder Event Tracker</title>
+        
 </head>
+
 <body>
-    
+
+<header>
+    <h1>WAR THUNDER EVENT TRACKER</h1>
+</header>
+
+<main>
+
+    <div class="event">
+
+        <h2 id="eventName">Event neve</h2>
+
+        <p id="eventDescription">
+            Event leírása
+        </p>
+
+        <div class="progress">
+            <div
+                id="progressBar"
+                class="progress-bar">
+            </div>
+        </div>
+
+        <p>
+            Haladás:
+            <strong id="progressText">0%</strong>
+        </p>
+
+        <div class="info">
+
+            <div class="box">
+                <h3>Mission Points</h3>
+
+                <p id="points">
+                    0 / 35000
+                </p>
+
+                <input
+                    id="pointsInput"
+                    type="number"
+                    placeholder="Pont">
+
+                <br>
+
+                <button onclick="addPoints()">
+                    Pont hozzáadása
+                </button>
+            </div>
+
+            <div class="box">
+                <h3>Következő jutalom</h3>
+
+                <p id="reward">
+                    Jutalom neve
+                </p>
+            </div>
+
+            <div class="box">
+                <h3>Hátralévő idő</h3>
+
+                <p id="timer">
+                    --:--:--
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
 </body>
 </html>
