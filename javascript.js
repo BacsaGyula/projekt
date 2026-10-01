@@ -9,7 +9,7 @@ const eventData = {
     description:
         "War Thunder event követő",
 
-    maxPoints: 10000,
+    maxPoints: 35000,
 
     reward:
         "AMV (BMP-3)",
