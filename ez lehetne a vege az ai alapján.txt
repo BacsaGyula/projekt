@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>War Thunder — Event Tracker</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #111416;
+    --panel: #1b1f20;
+    --panel2: #24292a;
+    --border: #3b4140;
+    --gold: #d6a84b;
+    --gold2: #f0c96b;
+    --green: #6f9e58;
+    --red: #a94c42;
+    --text: #e8e5dc;
+    --muted: #9c9c94;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        linear-gradient(rgba(15,17,18,.88), rgba(15,17,18,.96)),
+        repeating-linear-gradient(
+            135deg,
+            #171a1b 0px,
+            #171a1b 4px,
+            #131617 4px,
+            #131617 8px
+        );
+}
+
+header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: 1px solid var(--border);
+    background: #171a1b;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.header-right {
+    margin-left: auto;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.container {
+    width: min(1200px, 94%);
+    margin: 30px auto;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 32px;
+    border: 1px solid var(--border);
+    background:
+        linear-gradient(90deg, rgba(20,23,23,.97), rgba(20,23,23,.70)),
+        radial-gradient(circle at 80% 40%, #5e4c2b, #1b1e1f 55%);
+}
+
+.hero::after {
+    content: "WT";
+    position: absolute;
+    right: 35px;
+    top: 5px;
+    font-size: 170px;
+    font-weight: 900;
+    color: rgba(255,255,255,.025);
+}
+
+.event-label {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+h1 {
+    margin: 8px 0;
+    font-size: 38px;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    color: var(--muted);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.card {
+    border: 1px solid var(--border);
+    background: rgba(27,31,32,.96);
+    padding: 22px;
+}
+
+.card-title {
+    margin-bottom: 18px;
+    color: var(--gold2);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 9px;
+    font-size: 14px;
+}
+
+.progress {
+    height: 18px;
+    overflow: hidden;
+    border: 1px solid #4c504d;
+    background: #101212;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background:
+        repeating-linear-gradient(
+            135deg,
+            var(--gold),
+            var(--gold) 8px,
+            #b88936 8px,
+            #b88936 16px
+        );
+    transition: width .3s;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.stat {
+    padding: 15px;
+    border: 1px solid var(--border);
+    background: var(--panel2);
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    margin-top: 7px;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.reward {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.reward-icon {
+    width: 75px;
+    height: 75px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #766039;
+    background: linear-gradient(135deg, #413824, #1d201f);
+    color: var(--gold2);
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.reward-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.reward-type {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.countdown {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--gold2);
+    letter-spacing: 2px;
+}
+
+.stages {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.stage {
+    min-height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border);
+    background: #171a1b;
+    color: var(--muted);
+}
+
+.stage.completed {
+    border-color: #668450;
+    background: #20291e;
+    color: #b4d49c;
+}
+
+.stage.current {
+    border-color: var(--gold);
+    background: #30291d;
+    color: var(--gold2);
+}
+
+.stage-number {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.stage-icon {
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid var(--border);
+    outline: none;
+    background: #101212;
+    color: white;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 20px;
+    border: 1px solid #90733c;
+    cursor: pointer;
+    background: #3a3020;
+    color: var(--gold2);
+    font-weight: bold;
+}
+
+button:hover {
+    background: #514329;
+}
+
+.reset {
+    border-color: #633d39;
+    background: #2d1d1b;
+    color: #d88b81;
+}
+
+.tasks {
+    display: grid;
+    gap: 8px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px;
+    border: 1px solid var(--border);
+    background: #171a1b;
+}
+
+.task input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--gold);
+}
+
+.task.done {
+    opacity: .55;
+    text-decoration: line-through;
+}
+
+footer {
+    padding: 25px 0 40px;
+    text-align: center;
+    color: #666b68;
+    font-size: 11px;
+}
+
+@media(max-width: 800px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stages {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    header {
+        padding: 0 15px;
+    }
+
+    .header-right {
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">WAR <span>THUNDER</span></div>
+    <div class="header-right">EVENT TRACKER // HU</div>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <div class="event-label">AKTUÁLIS EVENT</div>
+        <h1>Desert Predator</h1>
+        <div class="subtitle">
+            Event haladás és jutalomkövető
+        </div>
+    </section>
+
+    <div class="grid">
+
+        <section class="card">
+
+            <div class="card-title">Event progress</div>
+
+            <div class="progress-info">
+                <span>Mission Points</span>
+                <strong>
+                    <span id="points">0</span> /
+                    <span id="maxPoints">2000</span>
+                </strong>
+            </div>
+
+            <div class="progress">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-label">Teljesítés</div>
+                    <div class="stat-value" id="percent">0%</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">Hiányzik</div>
+                    <div class="stat-value" id="remaining">2000</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">Stage</div>
+                    <div class="stat-value">
+                        <span id="stageCurrent">1</span>/10
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <input
+                    id="pointInput"
+                    type="number"
+                    min="0"
+                    placeholder="Mission Points hozzáadása..."
+                >
+
+                <button onclick="addPoints()">HOZZÁAD</button>
+            </div>
+
+            <div class="controls">
+                <button class="reset" onclick="resetProgress()">
+                    HALADÁS NULLÁZÁSA
+                </button>
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <div class="card-title">Hátralévő idő</div>
+
+            <div id="countdown" class="countdown">
+                Betöltés...
+            </div>
+
+            <p style="color:var(--muted);font-size:12px;">
+                Event vége
+            </p>
+
+            <hr style="border-color:var(--border);">
+
+            <div class="card-title">Következő jutalom</div>
+
+            <div class="reward">
+
+                <div class="reward-icon">
+                    AMV
+                </div>
+
+                <div>
+                    <div class="reward-name">
+                        AMV (BMP-3)
+                    </div>
+
+                    <div class="reward-type">
+                        Event vehicle
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <section class="card" style="margin-top:18px;">
+
+        <div class="card-title">Event stages</div>
+
+        <div id="stages" class="stages"></div>
+
+    </section>
+
+
+    <div class="grid">
+
+        <section class="card">
+
+            <div class="card-title">Saját feladatok</div>
+
+            <div class="tasks">
+
+                <label class="task">
+                    <input type="checkbox">
+                    Napi küldetés teljesítve
+                </label>
+
+                <label class="task">
+                    <input type="checkbox">
+                    5 csata lejátszva
+                </label>
+
+                <label class="task">
+                    <input type="checkbox">
+                    1 000 pont megszerezve
+                </label>
+
+                <label class="task">
+                    <input type="checkbox">
+                    Event küldetés teljesítve
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <div class="card-title">Event információ</div>
+
+            <p style="color:var(--muted);line-height:1.7;">
+                Itt tudod követni az event haladását.
+                A Mission Points érték automatikusan mentésre kerül
+                a böngésződben.
+            </p>
+
+            <p style="color:#777;font-size:11px;">
+                A jutalmak és követelmények később
+                egyszerűen módosíthatók.
+            </p>
+
+        </section>
+
+    </div>
+
+    <footer>
+        WAR THUNDER EVENT TRACKER — FAN MADE
+    </footer>
+
+</main>
+
+
+<script>
+
+const EVENT_END = new Date("2026-10-19T13:00:00+02:00").getTime();
+
+const MAX_POINTS = 2000;
+
+let points = Number(localStorage.getItem("wt_points")) || 0;
+
+const pointsElement = document.getElementById("points");
+const maxPointsElement = document.getElementById("maxPoints");
+const progressBar = document.getElementById("progressBar");
+const percentElement = document.getElementById("percent");
+const remainingElement = document.getElementById("remaining");
+const stageElement = document.getElementById("stageCurrent");
+
+maxPointsElement.textContent = MAX_POINTS;
+
+
+function updateProgress() {
+
+    if (points > MAX_POINTS) {
+        points = MAX_POINTS;
+    }
+
+    if (points < 0) {
+        points = 0;
+    }
+
+    const percentage =
+        Math.round((points / MAX_POINTS) * 100);
+
+    const remaining =
+        Math.max(MAX_POINTS - points, 0);
+
+    const stage =
+        Math.min(
+            Math.floor((points / MAX_POINTS) * 10) + 1,
+            10
+        );
+
+    pointsElement.textContent = points;
+    percentElement.textContent = percentage + "%";
+    remainingElement.textContent = remaining;
+    stageElement.textContent = stage;
+
+    progressBar.style.width = percentage + "%";
+
+    localStorage.setItem("wt_points", points);
+
+    renderStages();
+}
+
+
+function addPoints() {
+
+    const input =
+        document.getElementById("pointInput");
+
+    const value = Number(input.value);
+
+    if (!value || value <= 0) {
+        return;
+    }
+
+    points += value;
+
+    input.value = "";
+
+    updateProgress();
+}
+
+
+function resetProgress() {
+
+    if (!confirm("Biztosan nullázod az event haladását?")) {
+        return;
+    }
+
+    points = 0;
+
+    updateProgress();
+}
+
+
+function renderStages() {
+
+    const container =
+        document.getElementById("stages");
+
+    container.innerHTML = "";
+
+    const currentStage =
+        Math.min(
+            Math.floor((points / MAX_POINTS) * 10) + 1,
+            10
+        );
+
+    for (let i = 1; i <= 10; i++) {
+
+        const stage =
+            document.createElement("div");
+
+        stage.className = "stage";
+
+        if (i < currentStage) {
+            stage.classList.add("completed");
+        }
+
+        if (i === currentStage) {
+            stage.classList.add("current");
+        }
+
+        stage.innerHTML = `
+            <div class="stage-number">
+                STAGE ${i}
+            </div>
+
+            <div class="stage-icon">
+                ${i < currentStage ? "✓" :
+                  i === currentStage ? "◆" : "○"}
+            </div>
+        `;
+
+        container.appendChild(stage);
+    }
+}
+
+
+function updateCountdown() {
+
+    const now = Date.now();
+
+    let difference =
+        EVENT_END - now;
+
+    if (difference <= 0) {
+
+        document.getElementById("countdown")
+            .textContent = "EVENT VÉGET ÉRT";
+
+        return;
+    }
+
+    const days =
+        Math.floor(difference / 86400000);
+
+    difference %= 86400000;
+
+    const hours =
+        Math.floor(difference / 3600000);
+
+    difference %= 3600000;
+
+    const minutes =
+        Math.floor(difference / 60000);
+
+    const seconds =
+        Math.floor((difference % 60000) / 1000);
+
+    document.getElementById("countdown")
+        .textContent =
+        `${days}N ${hours}Ó ${minutes}P ${seconds}MP`;
+}
+
+
+document.querySelectorAll(".task input")
+.forEach(checkbox => {
+
+    checkbox.addEventListener("change", () => {
+
+        checkbox.parentElement.classList.toggle(
+            "done",
+            checkbox.checked
+        );
+
+    });
+
+});
+
+
+updateProgress();
+updateCountdown();
+
+setInterval(updateCountdown, 1000);
+
+</script>
+
+</body>
+</html>
