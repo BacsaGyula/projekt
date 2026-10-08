@@ -1,219 +1,217 @@
 * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #101214;
-            color: #e5e5e5;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #101214;
+    color: #e5e5e5;
+}
 
-        /* ===== HEADER ===== */
+/* ===== HEADER ===== */
 
-        header {
-            background: #171a1c;
-            border-bottom: 2px solid #8c6b2f;
-            padding: 20px 40px;
+header {
+    background: #171a1c;
+    border-bottom: 2px solid #8c6b2f;
+    padding: 20px 40px;
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #d3a94d;
-            letter-spacing: 2px;
-        }
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #d3a94d;
+    letter-spacing: 2px;
+}
 
-        nav a {
-            color: #ddd;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 14px;
-        }
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 14px;
+}
 
-        nav a:hover {
-            color: #d3a94d;
-        }
+nav a:hover {
+    color: #d3a94d;
+}
 
-        /* ===== HERO ===== */
+/* ===== HERO ===== */
 
-        .hero {
-            min-height: 500px;
+.hero {
+    min-height: 500px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 
-            background:
-                linear-gradient(
-                    rgba(10,12,13,.78),
-                    rgba(10,12,13,.92)
-                ),
-                url("background.jpg");
+    background:
+        linear-gradient(rgba(10, 12, 13, .78),
+            rgba(10, 12, 13, .92)),
+        url("background.jpg");
 
-            background-size: cover;
-            background-position: center;
-        }
+    background-size: cover;
+    background-position: center;
+}
 
-        .hero-content {
-            max-width: 800px;
-            padding: 30px;
-        }
+.hero-content {
+    max-width: 800px;
+    padding: 30px;
+}
 
-        .hero h1 {
-            font-size: 55px;
-            color: #d3a94d;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
+.hero h1 {
+    font-size: 55px;
+    color: #d3a94d;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
 
-        .hero h2 {
-            margin-top: 10px;
-            font-size: 22px;
-            color: #ccc;
-        }
+.hero h2 {
+    margin-top: 10px;
+    font-size: 22px;
+    color: #ccc;
+}
 
-        .hero p {
-            margin-top: 20px;
-            color: #999;
-            line-height: 1.7;
-        }
+.hero p {
+    margin-top: 20px;
+    color: #999;
+    line-height: 1.7;
+}
 
-        .button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 14px 30px;
+.button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 30px;
 
-            background: #8c6b2f;
-            color: white;
+    background: #8c6b2f;
+    color: white;
 
-            text-decoration: none;
-            font-weight: bold;
+    text-decoration: none;
+    font-weight: bold;
 
-            border: 1px solid #b58c40;
-        }
+    border: 1px solid #b58c40;
+}
 
-        .button:hover {
-            background: #a27b34;
-        }
+.button:hover {
+    background: #a27b34;
+}
 
-        /* ===== CONTENT ===== */
+/* ===== CONTENT ===== */
 
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 50px auto;
-        }
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 50px auto;
+}
 
-        .section-title {
-            margin-bottom: 25px;
-            color: #d3a94d;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+.section-title {
+    margin-bottom: 25px;
+    color: #d3a94d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
-        /* ===== CARDS ===== */
+/* ===== CARDS ===== */
 
-        .cards {
-            display: grid;
-            grid-template-columns:
-                repeat(3, 1fr);
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
 
-            gap: 20px;
-        }
+    gap: 20px;
+}
 
-        .card {
-            background: #1a1e20;
-            border: 1px solid #333;
-            padding: 25px;
-        }
+.card {
+    background: #1a1e20;
+    border: 1px solid #333;
+    padding: 25px;
+}
 
-        .card h3 {
-            color: #d3a94d;
-            margin-bottom: 12px;
-        }
+.card h3 {
+    color: #d3a94d;
+    margin-bottom: 12px;
+}
 
-        .card p {
-            color: #999;
-            line-height: 1.6;
-        }
+.card p {
+    color: #999;
+    line-height: 1.6;
+}
 
-        /* ===== CLAN INFO ===== */
+/* ===== CLAN INFO ===== */
 
-        .clan-info {
-            display: grid;
-            grid-template-columns:
-                repeat(4, 1fr);
+.clan-info {
+    display: grid;
+    grid-template-columns:
+        repeat(4, 1fr);
 
-            gap: 15px;
-            margin-top: 20px;
-        }
+    gap: 15px;
+    margin-top: 20px;
+}
 
-        .stat {
-            background: #1a1e20;
-            border: 1px solid #333;
-            padding: 25px;
-            text-align: center;
-        }
+.stat {
+    background: #1a1e20;
+    border: 1px solid #333;
+    padding: 25px;
+    text-align: center;
+}
 
-        .stat-number {
-            display: block;
-            font-size: 30px;
-            color: #d3a94d;
-            font-weight: bold;
-        }
+.stat-number {
+    display: block;
+    font-size: 30px;
+    color: #d3a94d;
+    font-weight: bold;
+}
 
-        .stat-label {
-            display: block;
-            margin-top: 8px;
-            color: #888;
-            font-size: 12px;
-            text-transform: uppercase;
-        }
+.stat-label {
+    display: block;
+    margin-top: 8px;
+    color: #888;
+    font-size: 12px;
+    text-transform: uppercase;
+}
 
-        /* ===== FOOTER ===== */
+/* ===== FOOTER ===== */
 
-        footer {
-            margin-top: 80px;
-            padding: 30px;
-            text-align: center;
+footer {
+    margin-top: 80px;
+    padding: 30px;
+    text-align: center;
 
-            background: #171a1c;
-            border-top: 1px solid #333;
+    background: #171a1c;
+    border-top: 1px solid #333;
 
-            color: #777;
-            font-size: 13px;
-        }
+    color: #777;
+    font-size: 13px;
+}
 
-        /* ===== MOBILE ===== */
+/* ===== MOBILE ===== */
 
-        @media (max-width: 800px) {
+@media (max-width: 800px) {
 
-            header {
-                padding: 20px;
-                flex-direction: column;
-                gap: 20px;
-            }
+    header {
+        padding: 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
 
-            nav a {
-                margin: 0 8px;
-            }
+    nav a {
+        margin: 0 8px;
+    }
 
-            .hero h1 {
-                font-size: 36px;
-            }
+    .hero h1 {
+        font-size: 36px;
+    }
 
-            .cards {
-                grid-template-columns: 1fr;
-            }
+    .cards {
+        grid-template-columns: 1fr;
+    }
 
-            .clan-info {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+    .clan-info {
+        grid-template-columns: 1fr 1fr;
+    }
+}
