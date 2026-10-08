@@ -8,6 +8,8 @@ body {
     font-family: Arial, sans-serif;
     background: #101214;
     color: #e5e5e5;
+    
+   
 }
 
 /* ===== HEADER ===== */
@@ -41,7 +43,6 @@ nav a:hover {
 }
 
 /* ===== HERO ===== */
-
 .hero {
     min-height: 500px;
 
@@ -61,7 +62,7 @@ nav a:hover {
 
 .hero-content {
     max-width: 800px;
-    padding: 30px;
+    padding: 90px;
 }
 
 .hero h1 {
@@ -117,12 +118,16 @@ nav a:hover {
 }
 
 /* ===== CARDS ===== */
+.kartyak{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
 
 .cards {
     display: grid;
-    grid-template-columns:
-        repeat(3, 1fr);
-
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
@@ -146,9 +151,7 @@ nav a:hover {
 
 .clan-info {
     display: grid;
-    grid-template-columns:
-        repeat(4, 1fr);
-
+    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     margin-top: 20px;
 }
@@ -205,6 +208,10 @@ footer {
 
     .hero h1 {
         font-size: 36px;
+    }
+
+    .kartyak{
+        grid-template-columns: 1fr;
     }
 
     .cards {

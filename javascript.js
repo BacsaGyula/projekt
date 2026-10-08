@@ -10,7 +10,3 @@
     - admin panel
     - jelentkezési rendszer
 */
-
-console.log(
-    "Hungarian Armed Outlaws website loaded."
-);
