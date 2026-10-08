@@ -1,2 +1,2 @@
 # Weblapom:
-## War Thunder-es event tracker készítek
+## War Thunder-es clan(HA0) weblapjának elkészítése
