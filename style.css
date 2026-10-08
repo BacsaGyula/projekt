@@ -8,8 +8,11 @@ body {
     font-family: Arial, sans-serif;
     background: #101214;
     color: #e5e5e5;
-    
-   
+    background-image: url(https://www.thrustmaster.com/wp-content/uploads/2025/11/art_wt_11_years_dark_layers-scaled.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
 }
 
 /* ===== HEADER ===== */
